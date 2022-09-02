@@ -9,9 +9,15 @@ Deno.test("E2E test", async (t) => {
     binaryPath: CHROME_BIN,
   });
 
-  const index = "https://www.active-connector.com/";
+  const index = "http://localhost:8000";
 
   /* Beginning of tests */
+  try {
+    assertEquals(await page.location(), index);
+  } catch (e) {
+    await browser.close();
+    throw e;
+  }
 
   await t.step("click the logo", async () => {
     await page.location(index);
