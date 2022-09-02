@@ -9,11 +9,11 @@ Deno.test("E2E test", async (t) => {
     binaryPath: CHROME_BIN,
   });
 
-  const index = page.location()
+  const index = "http://localhost:8000/";
 
   /* Beginning of tests */
   try {
-    assertEquals(await page.location(), index);
+    assertEquals(await page.location(index), index);
   } catch (e) {
     await browser.close();
     throw e;
