@@ -11,7 +11,7 @@ Deno.test("E2E test", async (t) => {
   });
 
   const netAddr = await getNetworkAddr();
-  const index = "http://"+netAddr;
+  const index = "http://" + netAddr;
 
   /* Beginning of tests */
   try {
