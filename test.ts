@@ -1,6 +1,6 @@
 import { buildFor } from "sinco/mod.ts";
 import { assertEquals } from "testing/asserts.ts";
-import { getNetworkAddr } from 'https://deno.land/x/local_ip/mod.ts';
+import { getNetworkAddr } from "https://deno.land/x/local_ip/mod.ts";
 
 const CHROME_BIN = Deno.env.get("CHROME_BIN");
 console.log("\n\nchrome bin ", CHROME_BIN);
