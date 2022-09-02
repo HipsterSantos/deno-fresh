@@ -1,17 +1,14 @@
 import { buildFor } from "sinco/mod.ts";
 import { assertEquals } from "testing/asserts.ts";
-import { getNetworkAddr } from "https://deno.land/x/local_ip/mod.ts";
 
 const CHROME_BIN = Deno.env.get("CHROME_BIN");
-console.log("\n\nchrome bin ", CHROME_BIN);
 Deno.test("E2E test", async (t) => {
   /* Start Sinco */
   const { browser, page } = await buildFor("chrome", {
     binaryPath: CHROME_BIN,
   });
 
-  const netAddr = await getNetworkAddr();
-  const index = "http://" + netAddr;
+  const index = "https://www.active-connector.com/";
 
   /* Beginning of tests */
   try {
