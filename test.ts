@@ -11,7 +11,6 @@ Deno.test("E2E test", async (t) => {
   const index = "https://www.active-connector.com/";
 
   /* Beginning of tests */
-  
   await t.step("click the logo", async () => {
     await page.location(index);
 
