@@ -10,8 +10,8 @@ Deno.test("E2E test", async (t) => {
     binaryPath: CHROME_BIN,
   });
 
-  // const index = "http://localhost:8000/";
-  const index = await getNetworkAddr();
+  const netAddr = await getNetworkAddr();
+  const index = "http://"+netAddr;
 
   /* Beginning of tests */
   try {
