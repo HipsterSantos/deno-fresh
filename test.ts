@@ -11,20 +11,14 @@ Deno.test("E2E test", async (t) => {
   const index = "https://www.active-connector.com/";
 
   /* Beginning of tests */
-  try {
-    assertEquals(await page.location(index), index);
-  } catch (e) {
-    await browser.close();
-    throw e;
-  }
-
+  
   await t.step("click the logo", async () => {
     await page.location(index);
 
     const image = await page.querySelector("img");
     await image.click({ waitFor: "navigation" });
 
-    assertEquals(await page.location(index), index);
+    assertEquals(await page.location(), index);
   });
 
   await page.location(index);
