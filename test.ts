@@ -9,7 +9,7 @@ Deno.test("E2E test", async (t) => {
     binaryPath: CHROME_BIN,
   });
 
-  const index = "http://localhost:8000/";
+  let index = "http://localhost:8000/";
 
   /* Beginning of tests */
 
@@ -17,9 +17,10 @@ Deno.test("E2E test", async (t) => {
     await page.location(index);
 
     const image = await page.querySelector("img");
-    await image.click({ waitFor: "navigation" });
-
-    assertEquals(await page.location(index), index);
+    await image.click({ waitFor: "navigation" });    
+    
+    assertEquals(await page.location(), index);
+    index = page.location()
   });
 
   await page.location(index);
