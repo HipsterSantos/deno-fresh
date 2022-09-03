@@ -53,7 +53,7 @@ Deno.test("E2E test", async (t) => {
     const button = await page.querySelector("button");
     await button.click({ waitFor: "navigation" });
 
-    assertEquals(await page.location(), `${index}jobs/${name}`);
+    assertEquals(await page.location(`${index}jobs/${name}`), `${index}jobs/${name}`);
 
     const body = await page.evaluate(() => {
       return document.querySelector("div")?.innerText;
@@ -70,7 +70,7 @@ Deno.test("E2E test", async (t) => {
     const button = await page.querySelector("button");
     await button.click({ waitFor: "navigation" });
 
-    assertEquals(await page.location(), `${index}jobs/engineer`);
+    assertEquals(await page.location(`${index}jobs/engineer`), `${index}jobs/engineer`);
 
     const body = await page.evaluate(() => {
       return document.querySelector("div")?.innerText;
