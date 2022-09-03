@@ -2,17 +2,16 @@ import { buildFor } from "sinco/mod.ts";
 import { assertEquals } from "testing/asserts.ts";
 
 const CHROME_BIN = Deno.env.get("CHROME_BIN");
-
 Deno.test("E2E test", async (t) => {
   /* Start Sinco */
   const { browser, page } = await buildFor("chrome", {
     binaryPath: CHROME_BIN,
   });
 
+
   let index = "http://localhost:8000/";
-
+  
   /* Beginning of tests */
-
   await t.step("click the logo", async () => {
     await page.location(index);
 
@@ -60,7 +59,7 @@ Deno.test("E2E test", async (t) => {
     const button = await page.querySelector("button");
     await button.click({ waitFor: "navigation" });
 
-    assertEquals(await page.location(), `${index}jobs/${name}`);
+    assertEquals(await page.location(`${index}jobs/${name}`), `${index}jobs/${name}`);
 
     const body = await page.evaluate(() => {
       return document.querySelector("div")?.innerText;
@@ -77,7 +76,7 @@ Deno.test("E2E test", async (t) => {
     const button = await page.querySelector("button");
     await button.click({ waitFor: "navigation" });
 
-    assertEquals(await page.location(), `${index}jobs/engineer`);
+    assertEquals(await page.location(`${index}jobs/engineer`), `${index}jobs/engineer`);
 
     const body = await page.evaluate(() => {
       return document.querySelector("div")?.innerText;
