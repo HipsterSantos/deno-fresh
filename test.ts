@@ -17,7 +17,7 @@ Deno.test("E2E test", async (t) => {
     const image = await page.querySelector("img");
     await image.click({ waitFor: "navigation" });
 
-    assertEquals(await page.location(index), index);
+    assertEquals(await page.location(), "https://www.active-connector.com/");
   });
 
   await page.location(index);
@@ -70,7 +70,7 @@ Deno.test("E2E test", async (t) => {
     const button = await page.querySelector("button");
     await button.click({ waitFor: "navigation" });
 
-    assertEquals(await page.location(index), `${index}jobs/engineer`);
+    assertEquals(await page.location(), `${index}jobs/engineer`);
 
     const body = await page.evaluate(() => {
       return document.querySelector("div")?.innerText;
