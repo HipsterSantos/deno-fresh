@@ -24,7 +24,7 @@ Deno.test("E2E test", async (t) => {
       console.log("Assertion failed ", err)
       browser.close()
     }
-    index = page.location()
+    index = await page.location()
   });
 
   await page.location(index);
