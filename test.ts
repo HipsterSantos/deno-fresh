@@ -8,16 +8,22 @@ Deno.test("E2E test", async (t) => {
     binaryPath: CHROME_BIN,
   });
 
-  const index = "https://www.active-connector.com/";
 
+  let index = "http://localhost:8000/";
+  
   /* Beginning of tests */
   await t.step("click the logo", async () => {
     await page.location(index);
 
     const image = await page.querySelector("img");
-    await image.click({ waitFor: "navigation" });
-
-    assertEquals(await page.location(), index);
+    await image.click({ waitFor: "navigation" });    
+    try{
+      assertEquals(await page.location(), index);
+    }catch(err){
+      console.log("Assertion failed ", err)
+      browser.close()
+    }
+    index = await page.location()
   });
 
   await page.location(index);
