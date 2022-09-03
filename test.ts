@@ -19,7 +19,7 @@ Deno.test("E2E test", async (t) => {
     const image = await page.querySelector("img");
     await image.click({ waitFor: "navigation" });
 
-    assertEquals(await page.location(), index);
+    assertEquals(await page.location(index), index);
   });
 
   await page.location(index);
