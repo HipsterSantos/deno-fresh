@@ -9,11 +9,11 @@ Deno.test("E2E test", async (t) => {
   });
 
 
-  let index = "http://localhost:8000/";
+  let index = await page.location("http://localhost:8000/");
   
   /* Beginning of tests */
   await t.step("click the logo", async () => {
-    await page.location(index);
+    await page.location();
 
     const image = await page.querySelector("img");
     await image.click({ waitFor: "navigation" });    
@@ -26,7 +26,7 @@ Deno.test("E2E test", async (t) => {
     index = await page.location()
   });
 
-  await page.location(index);
+  await page.location();
 
   await t.step("input is empty", async () => {
     const input = await page.querySelector("input");
@@ -59,7 +59,7 @@ Deno.test("E2E test", async (t) => {
     const button = await page.querySelector("button");
     await button.click({ waitFor: "navigation" });
 
-    assertEquals(await page.location(`${index}jobs/${name}`), `${index}jobs/${name}`);
+    assertEquals(await page.location(), `${index}jobs/${name}`);
 
     const body = await page.evaluate(() => {
       return document.querySelector("div")?.innerText;
@@ -76,7 +76,7 @@ Deno.test("E2E test", async (t) => {
     const button = await page.querySelector("button");
     await button.click({ waitFor: "navigation" });
 
-    assertEquals(await page.location(`${index}jobs/engineer`), `${index}jobs/engineer`);
+    assertEquals(await page.location(), `${index}jobs/engineer`);
 
     const body = await page.evaluate(() => {
       return document.querySelector("div")?.innerText;
