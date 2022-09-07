@@ -35,9 +35,6 @@ jobs:
 
       - name: Test - Start deno server
         run: deno task start 
-      
-      - name: Ping 
-        run: ping https://localhost:8000 
 
       - name: Test - Apply Test file here 
         run:  deno task test --quiet
