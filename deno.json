@@ -4,8 +4,8 @@
   },
   "tasks": {
     "dev": "deno run -A --watch=static/,routes/ dev.ts",
-    "start": "deno run --allow-run start.ts",
-    "test": "deno test --allow-net --allow-run --allow-env"
+    "start": "deno run -A start.ts",
+    "test": "deno test -A"
   },
   "importMap": "./import_map.json"
 }
