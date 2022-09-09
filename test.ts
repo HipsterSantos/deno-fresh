@@ -34,7 +34,7 @@ Deno.test("E2E test", async (t) => {
   
 
   await t.step("show error for an empty input", async () => {
-    const button = await page.querySelector("button");
+    const button = await page.querySelector(".button");
     await button.click({ waitFor: "navigation" });
     
     const error = await page.evaluate(() =>
