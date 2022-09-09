@@ -1,4 +1,4 @@
-const proc = Deno.run({
+Deno.run({
   cmd: ["deno", "task", "dev"],
 });
 
