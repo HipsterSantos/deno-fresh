@@ -40,16 +40,17 @@ Deno.test("E2E test", async (t) => {
   
   await t.step("show error for an empty input", async () => {
     await page.location(remote);
-    const button = await page.querySelector("button");
+    const button = await page.querySelector(".button");
     await button.click({ waitFor: "navigation" });
-
+    
     const error = await page.evaluate(() =>
-      document.querySelector("p")?.innerText
+    document.querySelector("p")?.innerText
     );
     assertEquals(error, "error: empty input");
   });
-
+  
   await t.step("input a random string and click the button", async () => {
+    await page.location(remote);
     const input = await page.querySelector("input");
 
     const name = crypto.randomUUID().slice(0, 7);
