@@ -30,7 +30,7 @@ Deno.test("E2E test", async (t) => {
     );
     assertEquals(error, undefined);
   });
-  
+  await page.location("https://www.active-connector.com/")
   await t.step("show error for an empty input", async () => {
     const button = await page.querySelector("button");
     await button.click({ waitFor: "navigation" });
