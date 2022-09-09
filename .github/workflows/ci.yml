@@ -34,7 +34,7 @@ jobs:
         run: export CHROME_BIN=$(which chrome)
 
       - name: Test - Start deno server
-        run: deno task start 
+        run: deno task dev 
 
       - name: Test - Apply Test file here 
         run:  deno task test --quiet
