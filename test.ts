@@ -9,7 +9,7 @@ Deno.test("E2E test", async (t) => {
     binaryPath: CHROME_BIN,
   });
 
-  const index = "http://localhost:8000/";
+  let index = "http://localhost:8000/";
 
   /* Beginning of tests */
 
@@ -22,14 +22,16 @@ Deno.test("E2E test", async (t) => {
     assertEquals(await page.location(), "https://www.active-connector.com/");
   });
 
-  // await page.location(index);
-  
   await t.step("error is not shown", async () => {
+    await page.location(index);
     const error = await page.evaluate(() =>
     document.querySelector("p")?.innerText
     );
     assertEquals(error, undefined);
   });
+
+  index  = await page.location()
+  
 
   await t.step("show error for an empty input", async () => {
     const button = await page.querySelector("button");
