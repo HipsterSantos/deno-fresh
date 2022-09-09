@@ -3,4 +3,4 @@ const proc = Deno.run({
 });
 
 proc.close();
-Deno.exit(0);
+Deno.exit();
