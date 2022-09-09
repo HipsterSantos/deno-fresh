@@ -50,10 +50,11 @@ Deno.test("E2E test", async (t) => {
   });
   
   await t.step("input 'engineer' and click the button", async () => {
+    await page.location(remote);
     const input = await page.querySelector("input");
     await input.value("engineer");
 
-    const button = await page.querySelector("button");
+    const button = await page.querySelector(".button");
     await button.click({ waitFor: "navigation" });
 
     assertEquals(await page.location(), `${index}jobs/engineer`);
