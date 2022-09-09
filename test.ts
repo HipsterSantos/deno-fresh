@@ -56,7 +56,7 @@ Deno.test("E2E test", async (t) => {
     const name = crypto.randomUUID().slice(0, 7);
     await input.value(name);
 
-    const button = await page.querySelector("button");
+    const button = await page.querySelector(".button");
     await button.click({ waitFor: "navigation" });
 
     assertEquals(await page.location(), `${index}jobs/${name}`);
