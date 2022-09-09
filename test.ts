@@ -26,7 +26,7 @@ Deno.test("E2E test", async (t) => {
 
   await t.step("input is empty", async () => {
     const input = await page.evaluate(() =>
-    document.querySelector(".freeword")?.value??""
+    document.querySelector(".freeword").value || ""
   );
    assertEquals(input, "");
 
