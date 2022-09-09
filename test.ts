@@ -57,12 +57,12 @@ Deno.test("E2E test", async (t) => {
     const button = await page.querySelector(".button");
     await button.click({ waitFor: "navigation" });
 
-    assertEquals(await page.location(), `${remote}jobs/allsearch.php?freeword=${"engineer"}&searchbtn=SEARCH+JOB`);
+    assertEquals(await page.location(), `${remote}jobs/allsearch.php?freeword=engineer&searchbtn=SEARCH+JOB`);
 
     const body = await page.evaluate(() => {
       return document.querySelector("div")?.innerText;
     });
-    assertEquals(body, ``);
+    assertEquals(body, "");
   });
 
   await t.step("input a random string and click the button", async () => {
@@ -74,13 +74,13 @@ Deno.test("E2E test", async (t) => {
 
     const button = await page.querySelector(".button");
     await button.click({ waitFor: "navigation" });
-    await page.location(index)
+
     assertEquals(await page.location(), `${remote}jobs/${name}`);
 
     const body = await page.evaluate(() => {
       return document.querySelector("div")?.innerText;
     });
-    assertEquals(body, `Job "${name}" is not available`);
+    assertEquals(body, "");
   });
 
   await page.location(index);
