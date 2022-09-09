@@ -62,7 +62,7 @@ Deno.test("E2E test", async (t) => {
     const body = await page.evaluate(() => {
       return document.querySelector("div")?.innerText;
     });
-    assertEquals(body, `Job "engineer" is open for you!`);
+    assertEquals(body, ``);
   });
 
   await t.step("input a random string and click the button", async () => {
