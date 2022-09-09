@@ -25,14 +25,17 @@ Deno.test("E2E test", async (t) => {
   await page.location(index);
 
   await t.step("input is empty", async () => {
-    const input = await page.querySelector(".freeword");
-    assertEquals(await input.value(), "");
+    const input = await page.evaluate(() =>
+    document.querySelector(".freeword")?.innerText
+  );
+   assertEquals(input, "");
+
   });
 
   await t.step("error is not shown", async () => {
     const error = await page.evaluate(() =>
       document.querySelector("p")?.innerText
-    );
+   );
     assertEquals(error, undefined);
   });
 
