@@ -10,43 +10,45 @@ Deno.test("E2E test", async (t) => {
   });
 
   const index = "http://localhost:8000/";
+  const remote = "https://www.active-connector.com/"
 
   /* Beginning of tests */
 
   await t.step("click the logo", async () => {
     await page.location(index);
-
+    
     const image = await page.querySelector("img");
     await image.click({ waitFor: "navigation" });
-
+    
     assertEquals(await page.location(), "https://www.active-connector.com/");
   });
+  
+  await t.step("input is empty", async () => {
+    await page.location(remote);
+    const input = await page.querySelector("input");
+    assertEquals(await input.value(), "");
+  });
 
+  await page.location(index);
+  
   await t.step("error is not shown", async () => {
-    await page.location(index);
     const error = await page.evaluate(() =>
     document.querySelector("p")?.innerText
     );
     assertEquals(error, undefined);
   });
-
-  await page.location("https://www.active-connector.com/")
   
   await t.step("show error for an empty input", async () => {
-    const button = await page.querySelector(".button");
+    await page.location(remote);
+    const button = await page.querySelector("button");
     await button.click({ waitFor: "navigation" });
-    
+
     const error = await page.evaluate(() =>
-    document.querySelector("p")?.innerText
+      document.querySelector("p")?.innerText
     );
     assertEquals(error, "error: empty input");
   });
-  
-  await t.step("input is empty", async () => {
-    const input = await page.querySelector(".freeword");
-    assertEquals(await input.value(), "");
-  });
-  
+
   await t.step("input a random string and click the button", async () => {
     const input = await page.querySelector("input");
 
