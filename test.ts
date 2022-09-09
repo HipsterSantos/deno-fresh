@@ -49,6 +49,21 @@ Deno.test("E2E test", async (t) => {
     assertEquals(error, undefined);
   });
   
+  await t.step("input 'engineer' and click the button", async () => {
+    const input = await page.querySelector("input");
+    await input.value("engineer");
+
+    const button = await page.querySelector("button");
+    await button.click({ waitFor: "navigation" });
+
+    assertEquals(await page.location(), `${index}jobs/engineer`);
+
+    const body = await page.evaluate(() => {
+      return document.querySelector("div")?.innerText;
+    });
+    assertEquals(body, `Job "engineer" is open for you!`);
+  });
+  
   await t.step("input a random string and click the button", async () => {
     await page.location(remote);
     const input = await page.querySelector("input");
@@ -69,20 +84,6 @@ Deno.test("E2E test", async (t) => {
 
   await page.location(index);
 
-  await t.step("input 'engineer' and click the button", async () => {
-    const input = await page.querySelector("input");
-    await input.value("engineer");
-
-    const button = await page.querySelector("button");
-    await button.click({ waitFor: "navigation" });
-
-    assertEquals(await page.location(), `${index}jobs/engineer`);
-
-    const body = await page.evaluate(() => {
-      return document.querySelector("div")?.innerText;
-    });
-    assertEquals(body, `Job "engineer" is open for you!`);
-  });
 
   /* End of tests */
 
