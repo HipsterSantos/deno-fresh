@@ -46,7 +46,7 @@ Deno.test("E2E test", async (t) => {
     const error = await page.evaluate(() =>
     document.querySelector("p")?.innerText
     );
-    assertEquals(error, undefined);
+    assertEquals(error, "error: empty input");
   });
   
   await t.step("input 'engineer' and click the button", async () => {
@@ -63,7 +63,7 @@ Deno.test("E2E test", async (t) => {
     });
     assertEquals(body, `Job "engineer" is open for you!`);
   });
-  
+
   await t.step("input a random string and click the button", async () => {
     await page.location(remote);
     const input = await page.querySelector("input");
