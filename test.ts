@@ -75,7 +75,7 @@ Deno.test("E2E test", async (t) => {
     const button = await page.querySelector(".button");
     await button.click({ waitFor: "navigation" });
     await page.location(index)
-    assertEquals(await page.location(), `${index}jobs/${name}`);
+    assertEquals(await page.location(), `${remote}jobs/${name}`);
 
     const body = await page.evaluate(() => {
       return document.querySelector("div")?.innerText;
