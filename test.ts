@@ -46,7 +46,7 @@ Deno.test("E2E test", async (t) => {
     const error = await page.evaluate(() =>
     document.querySelector("p")?.innerText
     );
-    assertEquals(error, "error: empty input");
+    assertEquals(error, "error:emptyinput");
   });
   
   await t.step("input 'engineer' and click the button", async () => {
